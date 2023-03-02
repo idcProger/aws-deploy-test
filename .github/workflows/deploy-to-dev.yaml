@@ -1,0 +1,34 @@
+name: Deploy To Dev
+
+on:
+  workflow_dispatch:
+    inputs:
+      service:
+        type: choice
+        description: Who to greet
+        options:
+          - all
+          - fpm
+          - worker
+          - cron
+        required: true
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build_and_push:
+    name: Build and push docker image
+      runs-on: ubuntu-latest
+      timeout-minutes: 10
+
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+          with:
+            ref: ${{ github.ref }}
+
+        - name: echo outputs
+          run: |
+            echo "OKEY"
