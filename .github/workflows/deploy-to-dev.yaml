@@ -18,7 +18,8 @@ permissions:
   contents: read
 
 jobs:
-  build_and_push:
+  deploy_fpm:
+    if: ${{ github.event.inputs.service == 'all' || github.event.inputs.service == 'fpm'}}
     name: Build and push docker image
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -30,6 +31,15 @@ jobs:
           ref: ${{ github.ref }}
 
       - name: echo outputs
-        if: ${{ github.event.inputs.service == 'all' || github.event.inputs.service == 'fpm'}}
+        run: |
+          echo ${{ github.event.inputs.service }}
+  deploy_cron:
+    if: ${{ github.event.inputs.service == 'all' || github.event.inputs.service == 'cron'}}
+    name: Build and push docker image
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: echo outputs
         run: |
           echo ${{ github.event.inputs.service }}
