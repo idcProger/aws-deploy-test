@@ -48,7 +48,7 @@ jobs:
         id: new-tag
         env:
           TAG: ${{ github.event.inputs.service }}
-        run: echo "IMAGE_TAG=${TAG##*or}"
+        run: echo "IMAGE_TAG=${TAG##*or}" >> $GITHUB_OUTPUT
 
       - name: echo tag
         id: echo-tag
