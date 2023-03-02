@@ -20,7 +20,7 @@ permissions:
 jobs:
   deploy_fpm:
     environment: DEV
-    if: ${{ github.event.inputs.service == 'all' || github.event.inputs.service == 'fpm'}}
+    if: ${{ github.event.inputs.service == 'all' || github.event.inputs.service == 'worker'}}
     name: Build and push docker image
     runs-on: ubuntu-latest
     timeout-minutes: 10
