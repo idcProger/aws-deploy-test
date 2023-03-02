@@ -20,15 +20,15 @@ permissions:
 jobs:
   build_and_push:
     name: Build and push docker image
-      runs-on: ubuntu-latest
-      timeout-minutes: 10
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
 
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v2
-          with:
-            ref: ${{ github.ref }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
 
-        - name: echo outputs
-          run: |
-            echo "OKEY"
+      - name: echo outputs
+        run: |
+          echo "OKEY"
