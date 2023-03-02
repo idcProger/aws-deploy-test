@@ -30,6 +30,6 @@ jobs:
           ref: ${{ github.ref }}
 
       - name: echo outputs
-        if: ${{ github.event.inputs.service }} == 'all' || ${{ github.event.inputs.service }} == 'fpm'
+        if: ${{ github.event.inputs.service }} == 'all'
         run: |
-          echo "OKEY"
+          echo ${{ github.event.inputs.service }}
