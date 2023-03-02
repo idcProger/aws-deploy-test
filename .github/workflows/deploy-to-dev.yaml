@@ -35,10 +35,14 @@ jobs:
         env:
           TEST_DEV_SECRET: ${{ secrets.TEST_DEV_SECRET }}
           ACTIONS_SECRET: ${{ secrets.ACTIONS_SECRET }}
+          SOME_VARIABLE: ${{ vars.SOME_VARIABLE }}
+          DEV_VAR: ${{ vars.DEV_VAR }}
         run: |
           echo ${{ github.event.inputs.service }}
           echo ${TEST_DEV_SECRET}
           echo ${ACTIONS_SECRET}
+          echo ${SOME_VARIABLE}
+          echo ${DEV_VAR}
 
   deploy_cron:
     if: ${{ github.event.inputs.service == 'all' || github.event.inputs.service == 'cron'}}
