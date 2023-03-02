@@ -30,33 +30,36 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: ${{ github.ref }}
-
-      - name: echo outputs
-        env:
-          TEST_DEV_SECRET: ${{ secrets.TEST_DEV_SECRET }}
-          ACTIONS_SECRET: ${{ secrets.ACTIONS_SECRET }}
-          SOME_VARIABLE: ${{ vars.SOME_VARIABLE }}
-          DEV_VAR: ${{ vars.DEV_VAR }}
-        run: |
-          echo ${{ github.event.inputs.service }}
-          echo ${TEST_DEV_SECRET}
-          echo ${ACTIONS_SECRET}
-          echo ${SOME_VARIABLE}
-          echo ${DEV_VAR}
+#
+#      - name: echo outputs
+#        env:
+#          TEST_DEV_SECRET: ${{ secrets.TEST_DEV_SECRET }}
+#          ACTIONS_SECRET: ${{ secrets.ACTIONS_SECRET }}
+#          SOME_VARIABLE: ${{ vars.SOME_VARIABLE }}
+#          DEV_VAR: ${{ vars.DEV_VAR }}
+#        run: |
+#          echo ${{ github.event.inputs.service }}
+#          echo ${TEST_DEV_SECRET}
+#          echo ${ACTIONS_SECRET}
+#          echo ${SOME_VARIABLE}
+#          echo ${DEV_VAR}
 
       - name: new tag
         id: new-tag
         env:
           TAG: ${{ github.event.inputs.service }}
-        run: echo "IMAGE_TAG=" >> ${TAG##*a}
-      - name: Get tag
-        run: echo "The selected color is ${{ steps.new-tag.outputs.IMAGE_TAG }}"
+        run: echo "IMAGE_TAG=${TAG##*or}"
 
       - name: echo tag
         id: echo-tag
         env:
           TAG: ${{ github.event.inputs.service }}
-        run: echo -n "::set-output name=tag::${TAG##*a}"
+        run: echo -n "::set-output name=tag::${TAG##*or}"
+
+      - name: Test variable
+        run: |
+          echo "old tag ${{ steps.echo-tag.outputs.tag }}"
+          echo "The selected color is ${{ steps.new-tag.outputs.IMAGE_TAG }}"
 
 
   deploy_cron:
