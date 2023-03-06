@@ -6,7 +6,6 @@ on:
       service:
         type: choice
         description: Who to greet
-        default: all
         options:
           - all
           - fpm
