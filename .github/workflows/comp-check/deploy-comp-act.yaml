@@ -1,0 +1,15 @@
+inputs:
+  tag:
+    description: 'Number of Octocats'
+    required: false
+    default: '1'
+  some-secret:
+    description: 'some secret'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - id: random-number-generator
+      run: echo "random-id=$(echo $RANDOM)" >> $GITHUB_OUTPUT
+      shell: bash
