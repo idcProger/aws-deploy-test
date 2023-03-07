@@ -5,6 +5,7 @@ on:
       - main
   workflow_dispatch:
 
+#test
 jobs:
   update_release_draft:
     runs-on: ubuntu-latest
