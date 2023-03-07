@@ -1,0 +1,27 @@
+name: Deploy To RC
+
+on:
+  workflow_dispatch:
+    inputs:
+      github_sha:
+        required: true
+        description: sha-commit
+
+concurrency: build-${{ github.event.inputs.github_sha }}
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy_fpm:
+    environment: RC
+    name: Build and push docker image
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
