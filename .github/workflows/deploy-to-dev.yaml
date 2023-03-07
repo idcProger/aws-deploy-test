@@ -62,6 +62,10 @@ jobs:
           echo "old tag ${{ steps.echo-tag.outputs.tag }}"
           echo "The selected color is ${{ steps.new-tag.outputs.IMAGE_TAG }}"
 
+      - uses: comp-check/say-hello@v1
+        with:
+          tag: ${{ steps.echo-tag.outputs.tag }}
+          some-secret: ${{ steps.new-tag.outputs.IMAGE_TAG }}
 
   deploy_cron:
     if: ${{ github.event.inputs.service == 'all' || github.event.inputs.service == 'cron'}}
