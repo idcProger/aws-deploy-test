@@ -1,3 +1,4 @@
+name: 'deploy-comp-act'
 inputs:
   tag:
     description: 'Number of Octocats'
