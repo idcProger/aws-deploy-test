@@ -21,11 +21,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - uses: ./actions/deploy-comp-act
-        id: deploy-comp-act
-        with:
-          tag: "sometag"
-          some-secret: "itssecret"
+  call-workflow-deploy-comp-act:
+    uses: ./.github/workflows/actions/deploy-comp-act.yml
+    with:
+      config-path: 'some path'
+    secrets: inherit
 
 #  deploy_cron:
 #    if: ${{ github.event.inputs.service == 'all' || github.event.inputs.service == 'cron'}}
