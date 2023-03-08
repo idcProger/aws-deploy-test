@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v2
 
   call-workflow-deploy-comp-act:
-    uses: ./.github/workflows/actions/deploy-comp-act.yml
+    uses: ./.github/workflows/deploy-comp-act.yaml
     with:
       config-path: 'some path'
     secrets: inherit
