@@ -62,7 +62,7 @@ jobs:
           echo "old tag ${{ steps.echo-tag.outputs.tag }}"
           echo "The selected color is ${{ steps.new-tag.outputs.IMAGE_TAG }}"
 
-      - uses: comp-check/deploy-comp-act@v1
+      - uses: ./comp-check/deploy-comp-act@v1
         with:
           tag: ${{ steps.echo-tag.outputs.tag }}
           some-secret: ${{ steps.new-tag.outputs.IMAGE_TAG }}
