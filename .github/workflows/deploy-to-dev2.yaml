@@ -23,7 +23,7 @@ jobs:
         with:
           ref: ${{ github.ref }}
 
-      - uses: ./comp-check/deploy-comp-act@v1
+      - uses: ./comp-check/deploy-comp-act
         with:
           tag: "sometag"
           some-secret: "itssecret"
