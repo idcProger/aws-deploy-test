@@ -67,8 +67,8 @@ jobs:
           tag: ${{ steps.echo-tag.outputs.tag }}
           some-secret: ${{ steps.new-tag.outputs.IMAGE_TAG }}
 
-  deploy_cron:
-    if: ${{ github.event.inputs.service == 'all' || github.event.inputs.service == 'cron'}}
+  deploy_cron22:
+#    if: ${{ github.event.inputs.service == 'all' || github.event.inputs.service == 'cron'}}
     name: Build and push docker image
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -76,4 +76,4 @@ jobs:
     steps:
       - name: echo outputs
         run: |
-          echo ${{ github.event.inputs.service }}
+          echo $(date +'%Y%m%d%HH%m%s')
