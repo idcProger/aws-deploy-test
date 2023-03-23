@@ -1,0 +1,39 @@
+name: Deploy To Dev2
+
+on:
+  push:
+    branches:
+      - check-compose
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy_fpm:
+    environment: DEV
+#    if: ${{ github.event.inputs.service == 'all' || github.event.inputs.service == 'worker'}}
+    name: Build and push docker image
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+  call-workflow-deploy-comp-act:
+    uses: ./.github/workflows/deploy-comp-act.yaml
+    with:
+      config-path: 'some path'
+    secrets: inherit
+
+#  deploy_cron:
+#    if: ${{ github.event.inputs.service == 'all' || github.event.inputs.service == 'cron'}}
+#    name: Build and push docker image
+#    runs-on: ubuntu-latest
+#    timeout-minutes: 10
+#
+#    steps:
+#      - name: echo outputs
+#        run: |
+#          echo ${{ github.event.inputs.service }}
